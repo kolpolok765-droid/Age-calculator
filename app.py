@@ -1,3 +1,4 @@
+import os
 import calendar
 from datetime import date
 from flask import Flask, request, jsonify, render_template
@@ -105,4 +106,5 @@ def calculate_age():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    debug = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=debug)
