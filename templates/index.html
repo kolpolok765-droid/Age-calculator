@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age & Zodiac Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <main class="app-container">
+        <section class="calculator-card" aria-labelledby="card-title">
+            <header class="card-header">
+                <div class="logo-badge" aria-hidden="true">⏳</div>
+                <h1 id="card-title">Age Calculator</h1>
+                <p class="subtitle">Discover your exact age and astrological sign</p>
+            </header>
+
+            <form id="age-form" class="calculator-form" novalidate>
+                <div class="input-group">
+                    <label for="birthdate">Date of Birth</label>
+                    <input 
+                        type="date" 
+                        id="birthdate" 
+                        name="birthdate" 
+                        required 
+                        aria-required="true"
+                    >
+                </div>
+
+                <div class="input-divider" aria-hidden="true">Calculate age on</div>
+
+                <div class="input-group">
+                    <label for="targetdate">Target Date</label>
+                    <input 
+                        type="date" 
+                        id="targetdate" 
+                        name="targetdate" 
+                        aria-describedby="targetdate-hint"
+                    >
+                    <span id="targetdate-hint" class="input-hint">Defaults to today — future dates allowed</span>
+                </div>
+
+                <span id="date-error" class="error-text" role="alert"></span>
+
+                <div class="button-actions">
+                    <button type="button" id="reset-btn" class="btn btn-secondary">
+                        <span class="btn-icon" aria-hidden="true">🔄</span> Reset
+                    </button>
+                </div>
+            </form>
+
+            <!-- Results container -->
+            <section class="results-section" aria-live="polite" aria-atomic="true">
+                <div id="results-placeholder" class="placeholder-content">
+                    <p>Enter your birthdate — and optionally a target date — to calculate your exact age.</p>
+                </div>
+                
+                <div id="results-display" class="results-display hidden">
+                    <div class="result-items">
+                        <div class="result-card">
+                            <span class="result-number" id="result-years">0</span>
+                            <span class="result-label">Years</span>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-number" id="result-months">0</span>
+                            <span class="result-label">Months</span>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-number" id="result-days">0</span>
+                            <span class="result-label">Days</span>
+                        </div>
+                    </div>
+
+                    <div class="zodiac-container">
+                        <div class="zodiac-badge">
+                            <span class="zodiac-icon" id="zodiac-emoji" aria-hidden="true">♈</span>
+                            <div class="zodiac-info">
+                                <span class="zodiac-title">Zodiac Sign</span>
+                                <span class="zodiac-name" id="zodiac-name">Aries</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+    <footer class="app-footer">
+        <p>Made with HSL green aesthetics. Responsive & accessible.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
